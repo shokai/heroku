@@ -2,7 +2,7 @@ require 'rubygems'
 require 'sinatra'
 
 get '/' do
-  'shokai'
+  haml :index
 end
 
 get '/env' do
