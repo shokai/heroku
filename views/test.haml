@@ -1,0 +1,7 @@
+- content_for :head do
+  :javascript
+    var app_root = "#{app_root}";
+  %script{:type => 'text/javascript', :src => "#{app_root}/js/test.js"}
+
+%div
+  root : #{app_root}

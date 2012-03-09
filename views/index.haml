@@ -1,7 +1,5 @@
-!!! XHTML
-%html
-  %head
-    %title shokai
-  %body
-    %h1 shokai
-    %a{:href => 'http://shokai.org'} shokai.org
+-content_for :title do
+  = @title
+
+%div
+  %a{:href => 'http://shokai.org'} shokai.org

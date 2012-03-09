@@ -1,5 +1,13 @@
+before do
+  @title = "shokai.heroku #{env['PATH_INFO'].gsub(/^\//, '')}"
+end
+
 get '/' do
   haml :index
+end
+
+get '/test' do
+  haml :test
 end
 
 get '/env' do
