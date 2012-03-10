@@ -6,10 +6,21 @@ Heroku
 http://shokai.herokuapp.com/
 
 
-Run
----
+Install Dependencies
+--------------------
 
     % gem install heroku foreman bundler
     % bundle install
-    % foreman start
 
+
+Run
+---
+
+    % foreman start -f Procfile.development
+
+
+Deploy
+------
+
+    % heroku create --stack cedar
+    % git push heroku master
