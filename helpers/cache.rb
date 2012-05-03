@@ -1,7 +1,7 @@
 
 class TmpCache
   def self.cache
-    @@cache ||= Hash.new{|h,k| h = {:expire => 60, :value => nil}}
+    @@cache ||= Hash.new{|h,k| h = {:expire => 0, :value => nil}}
   end
   
   def self.set(key, value, expire=60)
