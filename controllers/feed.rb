@@ -3,7 +3,7 @@
 get '/feed/akizuki.rss' do
   content_type 'application/xml'
   @title = "秋月電子通商 新着商品"
-  items = TmpCache.get('akizuki') || TmpCache.set('akizuki', Akizuki.get_items(20), 600)
+  items = TmpCache.get('akizuki') || TmpCache.set('akizuki', Akizuki.get_items(20), 1200)
 
   rss = RSS::Maker.make('2.0') do |rss|
     rss.channel.about = "#{app_root}#{env['PATH_INFO']}"
