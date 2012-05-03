@@ -18,6 +18,8 @@ Run
 
     % foreman start -f Procfile.development
 
+=> http://localhost:5000
+
 
 Deploy
 ------
