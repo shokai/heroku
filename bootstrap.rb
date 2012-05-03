@@ -4,6 +4,7 @@ require 'sinatra/content_for'
 require 'haml'
 require 'sass'
 require 'json'
+require 'rss'
 
 [:helpers, :controllers].each do |dir|
   Dir.glob(File.dirname(__FILE__)+"/#{dir}/*.rb").each do |rb|
