@@ -3,6 +3,7 @@ require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
 require 'kconv'
+require 'tmp_cache'
 
 class Akizuki
   def self.base_url
@@ -15,13 +16,19 @@ class Akizuki
 
   def self.get_items(limit=20)
     doc = Nokogiri::HTML open(list_url).read
-    doc.xpath('//a').to_a.delete_if{|a|
-      a['href'] !~ /^\/catalog\/g\/[a-zA-Z0-9\-]+/
-    }.map{|a|
-      {:title => a.text.strip, :url => "#{base_url}#{a['href']}"}
-    }[0...limit].map{|i|
+    top = TmpCache.get('akizuki_toppage') ||
+      TmpCache.set('akizuki_toppage',
+                   doc.xpath('//a').to_a.delete_if{|a|
+                     a['href'] !~ /^\/catalog\/g\/[a-zA-Z0-9\-]+/
+                   }.map{|a|
+                     {:title => a.text.strip, :url => "#{base_url}#{a['href']}"}
+                   }.uniq,
+                   300)
+
+    top[0...limit].map{|i|
       begin
-        res = get_item i[:url]
+        res = TmpCache.get("akizuki_#{i[:url]}") ||
+          TmpCache.set("akizuki_#{i[:url]}", get_item(i[:url]), 1200)
         res[:url] = i[:url]
       rescue => e
         STDERR.puts e
@@ -30,7 +37,7 @@ class Akizuki
       res
     }.delete_if{|i|
       !(i.kind_of? Hash)
-    }
+    }.uniq
   end
 
   def self.get_item(url)
