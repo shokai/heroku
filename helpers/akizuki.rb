@@ -23,12 +23,12 @@ class Akizuki
                    }.map{|a|
                      {:title => a.text.strip, :url => "#{base_url}#{a['href']}"}
                    }.uniq,
-                   300)
+                   1800)
 
     top[0...limit].map{|i|
       begin
         res = TmpCache.get("akizuki_#{i[:url]}") ||
-          TmpCache.set("akizuki_#{i[:url]}", get_item(i[:url]), 1200)
+          TmpCache.set("akizuki_#{i[:url]}", get_item(i[:url]), 3600*8)
         res[:url] = i[:url]
       rescue => e
         STDERR.puts e
