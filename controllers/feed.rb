@@ -14,8 +14,9 @@ get '/feed/akizuki.rss' do
       i = rss.items.new_item
       i.title = a[:title]
       i.link = a[:url]
-      i.description = a[:text].map{|t| "<p>#{t}</p>"}.join("\n") +
-        a[:imgs].map{|img| "<img src=\"#{img}\" />"}.join("\n")
+      i.description = a[:imgs].empty? ? '' : "<p><img src=\"#{a[:imgs][0]}\" /></p>\n" +
+        a[:text].map{|t| "<p>#{t}</p>" }.join("\n") +
+        a[:imgs][1..-1].map{|img| "<p><img src=\"#{img}\" /></p>"}.join("\n")
     end
   end
   rss.to_s
