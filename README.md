@@ -16,7 +16,7 @@ Install Dependencies
 Run
 ---
 
-    % foreman start -f Procfile.development
+    % foreman start
 
 => http://localhost:5000
 
