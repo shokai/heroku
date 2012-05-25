@@ -13,6 +13,14 @@ Install Dependencies
     % bundle install
 
 
+Config
+------
+
+    % cp sample.config.yml config.yml
+
+edit "config.yml".
+
+
 Run
 ---
 
@@ -25,4 +33,8 @@ Deploy
 ------
 
     % heroku create --stack cedar
-    % git push heroku master
+    % git branch deploy
+    % git checkout deploy
+    % git add config.yml
+    % git commit -m 'add config.yml'
+    % git push heroku deploy:master
