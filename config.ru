@@ -9,5 +9,6 @@ require 'json'
 require 'rss'
 require 'tmp_cache'
 require File.dirname(__FILE__)+'/bootstrap'
+Bootstrap.init :helpers, :controllers
 
 run Sinatra::Application
