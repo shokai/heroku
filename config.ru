@@ -11,4 +11,6 @@ require 'tmp_cache'
 require File.dirname(__FILE__)+'/bootstrap'
 Bootstrap.init :helpers, :controllers
 
+set :haml, :escape_html => true
+
 run Sinatra::Application
