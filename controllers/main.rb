@@ -1,5 +1,5 @@
 before do
-  @title = "#{Conf['title']} #{env['PATH_INFO'].gsub(/^\//, '')}"
+  @title = "shokai.heroku #{env['PATH_INFO'].gsub(/^\//, '')}"
 end
 
 get '/' do
