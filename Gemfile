@@ -1,8 +1,7 @@
 source :rubygems
 
 gem 'sinatra'
-gem 'sinatra-content-for'
-gem 'sinatra-reloader'
+gem 'sinatra-contrib'
 gem 'thin'
 gem 'haml'
 gem 'sass'
