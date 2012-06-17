@@ -8,7 +8,7 @@ require 'sass'
 require 'json'
 require 'rss'
 require 'tmp_cache'
-require File.dirname(__FILE__)+'/bootstrap'
+require File.expand_path 'bootstrap', File.dirname(__FILE__)
 Bootstrap.init :helpers, :controllers
 
 set :haml, :escape_html => true
