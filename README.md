@@ -26,3 +26,4 @@ Deploy
 
     % heroku create --stack cedar
     % git push heroku master
+    % heroku open
