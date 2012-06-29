@@ -6,7 +6,7 @@ require 'base64'
 class Base64Image
   attr_reader :base64, :content_type
 
-  def initialize(uri)
+  def initialize(uri, stop_request_pattern=nil)
     unless uri.kind_of? URI or uri.kind_of? Addressable::URI
       raise ArgumentError, 'argument must be instance of URI'
     end
@@ -15,7 +15,9 @@ class Base64Image
     5.times do
       res = Net::HTTP.start(uri.host, uri.port).request(Net::HTTP::Get.new uri.request_uri)
       break if res.code.to_i == 200
-      if res.code =~ /^3\d{2}$/ and res.header['location']
+      if res.code =~ /^3\d{2}$/ and
+          res.header['location'] and
+          (stop_request_pattern == nil or res.header['location'] !~ stop_request_pattern)
         uri = Addressable::URI.parse res.header['location']
         next
       end
@@ -39,4 +41,5 @@ if __FILE__ == $0
   img = Base64Image.new uri
   puts img.base64
   puts img.content_type
+  puts uri
 end
