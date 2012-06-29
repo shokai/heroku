@@ -1,0 +1,16 @@
+- content_for :title do
+  = @title
+
+%div#source
+  %h2 Image Source
+  %form{:method => 'GET', :action => "#{app_root}/base64img"}
+    %input{:type => :text, :value => @url, :size => 100, :name => :url}
+    %input{:type => :submit, :value => 'make base64'}
+%div#result
+  %h2 Base64
+  %textarea{:rows => 5, :cols => 100, :class => 'base64', :readonly => :readonly}= @img.base64
+  %h2 Embed Tag
+  %textarea{:rows => 5, :cols => 100, :class => 'embed', :readonly => :readonly}= "<img src=\"#{@img.to_s}\">"
+%div#preview
+  %h2 Preview
+  %img{:src => @img.to_s}

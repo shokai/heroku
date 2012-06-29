@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    addressable (2.2.8)
     backports (2.3.0)
     daemons (1.1.8)
     eventmachine (0.12.10)
@@ -35,6 +36,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable
   haml
   json
   nokogiri
