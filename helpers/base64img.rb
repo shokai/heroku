@@ -13,7 +13,7 @@ class Base64Image
 
     res = nil
     5.times do
-      res = Net::HTTP.start(uri.host, uri.port).request(Net::HTTP::Get.new uri.path)
+      res = Net::HTTP.start(uri.host, uri.port).request(Net::HTTP::Get.new uri.request_uri)
       break if res.code.to_i == 200
       if res.code =~ /^3\d{2}$/ and res.header['location']
         uri = Addressable::URI.parse res.header['location']
