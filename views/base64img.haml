@@ -9,6 +9,7 @@
 %div#result
   %h2 Base64
   %textarea{:rows => 5, :cols => 100, :class => 'base64', :readonly => :readonly}= @img.base64
+  %p (#{@img.base64.size} bytes)
   %h2 Embed Tag
   %textarea{:rows => 5, :cols => 100, :class => 'embed', :readonly => :readonly}= "<img src=\"#{@img.to_s}\">"
 %div#preview
